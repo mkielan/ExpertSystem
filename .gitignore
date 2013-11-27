@@ -1,0 +1,13 @@
+/packages
+
+/TestResults
+
+/Kielan.ExpertSystem/bin
+
+/Kielan.ExpertSystem/obj
+
+/Kielan.ExpertSystem.Core/obj
+/Kielan.ExpertSystem.Core/bin
+
+/Kielan.ExpertSystem.Data/obj
+/Kielan.ExpertSystem.Data/bin
