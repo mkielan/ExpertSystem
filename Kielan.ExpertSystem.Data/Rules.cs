@@ -17,14 +17,15 @@ namespace Kielan.ExpertSystem.Data
         public Rules()
         {
             this.Actions = new HashSet<Actions>();
-            this.Patterns = new HashSet<Patterns>();
         }
     
         public long Id { get; set; }
         public string Name { get; set; }
         public string Comment { get; set; }
+        public long PatternsId { get; set; }
     
         public virtual ICollection<Actions> Actions { get; set; }
-        public virtual ICollection<Patterns> Patterns { get; set; }
+        public virtual Patterns Patterns { get; set; }
+        public virtual Patterns Conclusion { get; set; }
     }
 }

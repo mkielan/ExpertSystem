@@ -25,7 +25,7 @@
             <End Role="Patterns" EntitySet="PatternsSet" />
             <End Role="Facts" EntitySet="FactsSet" />
           </AssociationSet>
-          <AssociationSet Name="PatternsRules" Association="DataModel.PatternsRules">
+          <AssociationSet Name="Rule_Premise" Association="DataModel.PatternsRules">
             <End Role="Patterns" EntitySet="PatternsSet" />
             <End Role="Rules" EntitySet="RulesSet" />
           </AssociationSet>
@@ -35,6 +35,10 @@
             <End Role="Facts" EntitySet="FactsSet" />
           </AssociationSet>
           <EntitySet Name="QuestionsSet" EntityType="DataModel.Questions" />
+          <AssociationSet Name="Rules_Conclusion" Association="DataModel.Rules_Conclusion">
+            <End Role="Patterns" EntitySet="PatternsSet" />
+            <End Role="Rules" EntitySet="RulesSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Rules">
           <Key>
@@ -45,6 +49,8 @@
           <Property Type="String" Name="Comment" Nullable="true" MaxLength="200" />
           <NavigationProperty Name="Actions" Relationship="DataModel.RulesActions" FromRole="Rules" ToRole="Actions" />
           <NavigationProperty Name="Patterns" Relationship="DataModel.PatternsRules" FromRole="Rules" ToRole="Patterns" />
+          <NavigationProperty Name="Conclusion" Relationship="DataModel.Rules_Conclusion" FromRole="Rules" ToRole="Patterns" />
+          <Property Name="PatternsId" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="Facts">
           <Key>
@@ -63,6 +69,8 @@
           <Property Type="Int64" Name="RulesId" Nullable="false" />
           <NavigationProperty Name="Facts" Relationship="DataModel.PatternsFacts" FromRole="Patterns" ToRole="Facts" />
           <NavigationProperty Name="Rules" Relationship="DataModel.PatternsRules" FromRole="Patterns" ToRole="Rules" />
+          <Property Name="Cf" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Rule" Relationship="DataModel.Rules_Conclusion" FromRole="Patterns" ToRole="Rules" />
         </EntityType>
         <EntityType Name="Actions">
           <Key>
@@ -81,8 +89,8 @@
           <End Type="DataModel.Facts" Role="Facts" Multiplicity="1" />
         </Association>
         <Association Name="PatternsRules">
-          <End Type="DataModel.Patterns" Role="Patterns" Multiplicity="*" />
-          <End Type="DataModel.Rules" Role="Rules" Multiplicity="1" />
+          <End Type="DataModel.Patterns" Role="Patterns" Multiplicity="1" />
+          <End Type="DataModel.Rules" Role="Rules" Multiplicity="*" />
         </Association>
         <EntityType Name="SelectedFacts">
           <Key>
@@ -102,6 +110,18 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Text" Nullable="false" MaxLength="100" />
         </EntityType>
+        <Association Name="Rules_Conclusion">
+          <End Type="DataModel.Patterns" Role="Patterns" Multiplicity="1" />
+          <End Type="DataModel.Rules" Role="Rules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patterns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rules">
+              <PropertyRef Name="PatternsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

@@ -14,10 +14,18 @@ namespace Kielan.ExpertSystem.Data
     
     public partial class Patterns
     {
+        public Patterns()
+        {
+            this.Rules = new HashSet<Rules>();
+            this.Rule = new HashSet<Rules>();
+        }
+    
         public long Id { get; set; }
         public long RulesId { get; set; }
+        public double Cf { get; set; }
     
         public virtual Facts Facts { get; set; }
-        public virtual Rules Rules { get; set; }
+        public virtual ICollection<Rules> Rules { get; set; }
+        public virtual ICollection<Rules> Rule { get; set; }
     }
 }

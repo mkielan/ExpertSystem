@@ -20,9 +20,17 @@ namespace Kielan.ExpertSystem
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<String> Questions;
+
         public MainWindow()
         {
             InitializeComponent();
+            Questions = new List<string>();
+
+            Questions.Add("Item1");
+            Questions.Add("Item2");
+            Questions.Add("Item3");
+            Questions.Add("Item4");
         }
     }
 }
