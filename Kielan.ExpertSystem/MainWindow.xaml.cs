@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Kielan.ExpertSystem.Core;
+
 namespace Kielan.ExpertSystem
 {
     /// <summary>
@@ -20,17 +22,38 @@ namespace Kielan.ExpertSystem
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<String> Questions;
+        private Question _question;
+        public Question Question { 
+            get { return _question; }
+            set { 
+                _question = value;
+                txbQuestionField.Text = value.Text;
+
+                Refresh(value);
+            }
+        }
 
         public MainWindow()
         {
             InitializeComponent();
-            Questions = new List<string>();
 
-            Questions.Add("Item1");
-            Questions.Add("Item2");
-            Questions.Add("Item3");
-            Questions.Add("Item4");
+            var q = new Question { Text = "Test Question" };
+            q.Answers.Add(new Answer { Text = "Item1" });
+            q.Answers.Add(new Answer { Text = "Item2" });
+            q.Answers.Add(new Answer { Text = "Item3" });
+            q.Answers.Add(new Answer { Text = "Item4" });
+
+            Question = q;
+        }
+
+        public void Refresh(Question question)
+        {
+            lvAnswers.Items.Clear();
+
+            foreach (var a in question.Answers)
+            {
+                lvAnswers.Items.Add(a);
+            }
         }
     }
 }
