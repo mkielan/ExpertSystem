@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SystemEkspercki" Class="SEDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=MARIO-MAC;Initial Catalog=SystemEkspercki;Integrated Security=True" SettingsObjectName="Kielan.ExpertSystem.Core.Properties.Settings" SettingsPropertyName="SystemEksperckiConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Answers" Member="Answers">
+    <Type Name="Answer">
+      <Column Name="QuestionId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FactId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Fact_Answer" Member="Fact" ThisKey="FactId" OtherKey="FactId" Type="Fact" IsForeignKey="true" />
+      <Association Name="Question_Answer" Member="Question" ThisKey="QuestionId" OtherKey="QuestionId" Type="Question" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Conclusions" Member="Conclusions">
+    <Type Name="Conclusion">
+      <Column Name="ConclusionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(130) NOT NULL" CanBeNull="false" />
+      <Column Name="Cf" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Conclusion_Rule" Member="Rule" ThisKey="ConclusionId" OtherKey="RuleId" Type="Rule" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Facts" Member="Facts">
+    <Type Name="Fact">
+      <Column Name="FactId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Text" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Cf" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Fact_Answer" Member="Answers" ThisKey="FactId" OtherKey="FactId" Type="Answer" />
+      <Association Name="Fact_Pattern" Member="Patterns" ThisKey="FactId" OtherKey="FactId" Type="Pattern" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Patterns" Member="Patterns">
+    <Type Name="Pattern">
+      <Column Name="FactId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RuleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Fact_Pattern" Member="Fact" ThisKey="FactId" OtherKey="FactId" Type="Fact" IsForeignKey="true" />
+      <Association Name="Rule_Pattern" Member="Rule" ThisKey="RuleId" OtherKey="RuleId" Type="Rule" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Questions" Member="Questions">
+    <Type Name="Question">
+      <Column Name="QuestionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Text" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Question_Answer" Member="Answers" ThisKey="QuestionId" OtherKey="QuestionId" Type="Answer" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Rules" Member="Rules">
+    <Type Name="Rule">
+      <Column Name="RuleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Text" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ConclusionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Rule_Pattern" Member="Patterns" ThisKey="RuleId" OtherKey="RuleId" Type="Pattern" />
+      <Association Name="Conclusion_Rule" Member="Conclusion" ThisKey="RuleId" OtherKey="ConclusionId" Type="Conclusion" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

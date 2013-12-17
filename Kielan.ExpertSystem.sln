@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kielan.ExpertSystem", "Kielan.ExpertSystem\Kielan.ExpertSystem.csproj", "{09750D11-A9E3-4323-A0EC-A89714B701D9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kielan.ExpertSystem.Core", "Kielan.ExpertSystem.Core\Kielan.ExpertSystem.Core.csproj", "{A7E654D1-08F3-42D3-92AA-86671359029C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kielan.ExpertSystem.Data", "Kielan.ExpertSystem.Data\Kielan.ExpertSystem.Data.csproj", "{4D79F34C-EE75-41DD-B9E5-360D3A4ABE2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{A7E654D1-08F3-42D3-92AA-86671359029C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7E654D1-08F3-42D3-92AA-86671359029C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7E654D1-08F3-42D3-92AA-86671359029C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D79F34C-EE75-41DD-B9E5-360D3A4ABE2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D79F34C-EE75-41DD-B9E5-360D3A4ABE2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D79F34C-EE75-41DD-B9E5-360D3A4ABE2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D79F34C-EE75-41DD-B9E5-360D3A4ABE2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
